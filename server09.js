@@ -13,8 +13,19 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //     res.send("dane html odesłane z serwera do przeglądarki")
 //     console.log("kotleciki")
 // })
-app.set('views', path.join(__dirname, 'views'));         // ustalamy katalog views
-app.engine('hbs', hbs({ defaultLayout: 'main.hbs' }));   // domyślny layout, potem można go zmienić
+app.set('views', path.join(__dirname, 'views'));
+app.engine('hbs', hbs({
+    defaultLayout: 'main.hbs',
+    helpers: {
+        shortTitle: function (title) {
+            return title.substring(0, 10) + "...";
+        },
+        innyHelper: function (title) {
+            //...
+        },
+
+    }
+}));       // ustalamy katalog views   
 app.set('view engine', 'hbs');                           // określenie nazwy silnika szablonów
 
 app.listen(PORT, function () {
@@ -29,7 +40,7 @@ app.use(express.static('static'))
 // })
 
 app.get("/index", function (req, res) {
-    res.render('index03.hbs', context);   // nie podajemy ścieżki tylko nazwę pliku
+    res.render('index09.hbs', context);   // nie podajemy ścieżki tylko nazwę pliku
     // res.render('index.hbs', context);
 })
 
@@ -38,11 +49,6 @@ app.post("/handleForm", function (req, res) {
 })
 
 const context = {
-    subject: "ćwiczenie 3 - dane z tablicy obiektów",
-    books: [
-        { title: "Lalka", author: "B Prus", lang: "PL" },
-        { title: "Hamlet", author: "W Szekspir", lang: "ENG" },
-        { title: "Pan Wołodyjowski", author: "H Sienkiewicz", lang: "PL" },
-        { title: "Homo Deus", author: "Yuval Noah Harari", lang: "CZ" }
-    ]
+    "subject": "T: ćwiczenie 9 - użycie helperów",
+    "title": "Lorem ipsum dolor sit amet consectetur adipiscing elit"
 }

@@ -38,11 +38,21 @@ app.post("/handleForm", function (req, res) {
 })
 
 const context = {
-    subject: "ćwiczenie 3 - dane z tablicy obiektów",
+    subject: "ćwiczenie 4 - dane z tablicy, select",
+    fields: [
+        { name: "title" },
+        { name: "author" },
+        { name: "lang" }
+    ],
     books: [
         { title: "Lalka", author: "B Prus", lang: "PL" },
         { title: "Hamlet", author: "W Szekspir", lang: "ENG" },
         { title: "Pan Wołodyjowski", author: "H Sienkiewicz", lang: "PL" },
-        { title: "Homo Deus", author: "Yuval Noah Harari", lang: "CZ" }
+        { title: "Zamek", author: "F Kafka", lang: "CZ" }
     ]
 }
+
+console.log("--- cały obiekt context")
+console.log(context)
+console.log("--- tablica fields z obiektu context")
+console.log(context.fields)
